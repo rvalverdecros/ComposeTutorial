@@ -29,11 +29,6 @@ class MainActivity : ComponentActivity() {
 fun Greeting(name: String) {
 
     val seleccion= mutableListOf("Malo", "Regular", "Bien", "Muy bien")
-    val resale = seleccion.random()
-    var respuesta1 by remember { mutableStateOf("Malo") }
-    var respuesta2 by remember { mutableStateOf("Regular") }
-    var respuesta3 by remember { mutableStateOf("Bien") }
-    var respuesta4 by remember { mutableStateOf("Muy bien") }
     var nombre by remember { mutableStateOf("Rafael") }
     var dia by remember { mutableStateOf("Martes") }
     var conjunto = 0
@@ -65,46 +60,11 @@ fun Greeting(name: String) {
 
     Column() {
         Text(text = "$name")
-        Text(text = "Amor: $respuesta1")
-        Text(text = "Dinero: $respuesta2")
-        Text(text = "Salud: $respuesta3")
-        Text(text = "Trabajo: $respuesta4")
+        Text(text = "Amor: ${seleccion.random()}")
+        Text(text = "Dinero: ${seleccion.random()}")
+        Text(text = "Salud: ${seleccion.random()}")
+        Text(text = "Trabajo: ${seleccion.random()}")
         Text(text = "General: $media")
-    }
-    Column(modifier = Modifier
-        .fillMaxHeight()
-        .width(400.dp)
-        .wrapContentWidth(Alignment.Start),
-        horizontalAlignment = Alignment.Start,
-        verticalArrangement = Arrangement.Bottom) {
-        Button(onClick = {
-            if (resale == respuesta1){
-                val nuevo = seleccion.random()
-                respuesta1 = nuevo
-            }else{
-                respuesta1 = resale
-            }
-            if (resale == respuesta2){
-                val nuevo = seleccion.random()
-                respuesta2 = nuevo
-            }else{
-                respuesta2 = resale
-            }
-            if (resale == respuesta3){
-                val nuevo = seleccion.random()
-                respuesta3 = nuevo
-            }else{
-                respuesta3 = resale
-            }
-            if (resale == respuesta4){
-                val nuevo = seleccion.random()
-                respuesta4 = nuevo
-            }else{
-                respuesta4 = resale
-            }
-        }) {
-            Text(cuadro)
-        }
     }
 
 }
