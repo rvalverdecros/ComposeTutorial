@@ -29,7 +29,7 @@ class MainActivity : ComponentActivity() {
 fun Greeting(name: String) {
 
     val seleccion= mutableListOf("Malo", "Regular", "Bien", "Muy bien")
-    val random = seleccion.random()
+    val resale = seleccion.random()
     var respuesta1 by remember { mutableStateOf("Malo") }
     var respuesta2 by remember { mutableStateOf("Regular") }
     var respuesta3 by remember { mutableStateOf("Bien") }
@@ -78,29 +78,29 @@ fun Greeting(name: String) {
         horizontalAlignment = Alignment.Start,
         verticalArrangement = Arrangement.Bottom) {
         Button(onClick = {
-            if (random == respuesta1){
+            if (resale == respuesta1){
                 val nuevo = seleccion.random()
                 respuesta1 = nuevo
             }else{
-                respuesta1 = random
+                respuesta1 = resale
             }
-            if (random == respuesta2){
+            if (resale == respuesta2){
                 val nuevo = seleccion.random()
                 respuesta2 = nuevo
             }else{
-                respuesta2 = random
+                respuesta2 = resale
             }
-            if (random == respuesta3){
+            if (resale == respuesta3){
                 val nuevo = seleccion.random()
                 respuesta3 = nuevo
             }else{
-                respuesta3 = random
+                respuesta3 = resale
             }
-            if (random == respuesta4){
+            if (resale == respuesta4){
                 val nuevo = seleccion.random()
                 respuesta4 = nuevo
             }else{
-                respuesta4 = random
+                respuesta4 = resale
             }
         }) {
             Text(cuadro)
