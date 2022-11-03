@@ -66,7 +66,7 @@ fun Greeting(name: String) {
         media = "Muy Bien"
     }
     Row(modifier = Modifier.padding(all = 8.dp)) {
-        OutlinedButton(onClick = {
+        Button(onClick = {
             if (selale == respuesta1){
                 val nuevo = seleccion.random()
                 respuesta1 = nuevo
@@ -109,7 +109,7 @@ fun Greeting(name: String) {
             Text(text = "Salud: $respuesta3")
             Text(text = "Trabajo: $respuesta4")
             Text(text = "General: $media")
-            Text(text = "El dia es: $dia")
+            Text(text = "El dia de hoy es: $dia")
         }
     }
 
