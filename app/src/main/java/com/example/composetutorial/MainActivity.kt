@@ -1,20 +1,23 @@
 package com.example.composetutorial
 
+import android.content.res.Configuration
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.*
-import androidx.compose.material3.Button
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.toLowerCase
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.composetutorial.ui.theme.ComposeTutorialTheme
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.*
+import androidx.compose.ui.draw.clip
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,18 +32,23 @@ class MainActivity : ComponentActivity() {
 fun Greeting(name: String) {
 
     val seleccion= mutableListOf("Malo", "Regular", "Bien", "Muy bien")
-    var nombre by remember { mutableStateOf("Rafael") }
-    var dia by remember { mutableStateOf("Martes") }
+    val nombre by remember { mutableStateOf("Rafael") }
+    val diasemana = mutableListOf("Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo")
+    var dia by remember { mutableStateOf(diasemana.random()) }
     var conjunto = 0
     var media by remember { mutableStateOf("Bien") }
-    var cuadro by remember { mutableStateOf("¡Pulsa para ver como sera tu dia!")}
+    var respuesta1 by remember { mutableStateOf(seleccion.random()) }
+    var respuesta2 by remember { mutableStateOf(seleccion.random()) }
+    var respuesta3 by remember { mutableStateOf(seleccion.random()) }
+    var respuesta4 by remember { mutableStateOf(seleccion.random()) }
+    val selale = seleccion.random()
 
 
     fun countOccurrences(s: String, ch: Char): Int {
         return s.count { it == ch }
     }
-    val nombremin = nombre.toLowerCase()
-    val diamin = dia.toLowerCase()
+    val nombremin = nombre.lowercase()
+    val diamin = dia.lowercase()
 
     for (letra in nombremin){
         conjunto += countOccurrences(diamin,letra)
@@ -48,7 +56,7 @@ fun Greeting(name: String) {
 
     val res: Double = (conjunto.toDouble()/nombre.length.toDouble()) * 4.0
 
-    if (res < 1){
+    if (res < 1.0){
         media = "Malo"
     }else if (res >= 1.0 && res < 2.0){
         media = "Regular"
@@ -57,19 +65,61 @@ fun Greeting(name: String) {
     }else if (res >= 3.0 && res < 4.0){
         media = "Muy Bien"
     }
-
-    Column() {
-        Text(text = "$name")
-        Text(text = "Amor: ${seleccion.random()}")
-        Text(text = "Dinero: ${seleccion.random()}")
-        Text(text = "Salud: ${seleccion.random()}")
-        Text(text = "Trabajo: ${seleccion.random()}")
-        Text(text = "General: $media")
+    Row(modifier = Modifier.padding(all = 8.dp)) {
+        OutlinedButton(onClick = {
+            if (selale == respuesta1){
+                val nuevo = seleccion.random()
+                respuesta1 = nuevo
+            }else{
+                respuesta1 = selale
+            }
+            if (selale == respuesta2){
+                val nuevo = seleccion.random()
+                respuesta2 = nuevo
+            }else{
+                respuesta2 = selale
+            }
+            if (selale == respuesta3){
+                val nuevo = seleccion.random()
+                respuesta3 = nuevo
+            }else{
+                respuesta3 = selale
+            }
+            if (selale == respuesta4){
+                val nuevo = seleccion.random()
+                respuesta4 = nuevo
+            }else{
+                respuesta4 = selale
+            }
+        }) {
+            Image(
+                painter = painterResource(R.drawable.bigstock_zodiac_circle_round_horoscope_334084123_1_621x621),
+                contentDescription = "Imagen del horoscopo",
+                modifier = Modifier
+                    .size(40.dp)
+                    .clip(CircleShape)
+            )
+        }
+        Spacer(modifier = Modifier.width(8.dp))
+        Column() {
+            Spacer(modifier = Modifier.height(4.dp))
+            Text(text = "$name")
+            Text(text = "Amor: $respuesta1")
+            Text(text = "Dinero: $respuesta2")
+            Text(text = "Salud: $respuesta3")
+            Text(text = "Trabajo: $respuesta4")
+            Text(text = "General: $media")
+            Text(text = "El dia es: $dia")
+        }
     }
 
 }
 
 @Preview(showBackground = true)
+@Preview(
+uiMode = Configuration.UI_MODE_NIGHT_YES,
+showBackground = true,
+name = "Dark Mode")
 @Composable
 fun DefaultPreview() {
     ComposeTutorialTheme {
