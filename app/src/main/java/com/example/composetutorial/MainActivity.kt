@@ -14,9 +14,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.composetutorial.ui.theme.ComposeTutorialTheme
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.*
 import androidx.compose.ui.draw.clip
+import java.sql.RowId
 
 
 class MainActivity : ComponentActivity() {
@@ -66,44 +68,46 @@ fun Greeting(name: String) {
         media = "Muy Bien"
     }
     Row(modifier = Modifier.padding(all = 8.dp)) {
-        Button(onClick = {
-            if (selale == respuesta1){
-                val nuevo = seleccion.random()
-                respuesta1 = nuevo
-            }else{
-                respuesta1 = selale
-            }
-            if (selale == respuesta2){
-                val nuevo = seleccion.random()
-                respuesta2 = nuevo
-            }else{
-                respuesta2 = selale
-            }
-            if (selale == respuesta3){
-                val nuevo = seleccion.random()
-                respuesta3 = nuevo
-            }else{
-                respuesta3 = selale
-            }
-            if (selale == respuesta4){
-                val nuevo = seleccion.random()
-                respuesta4 = nuevo
-            }else{
-                respuesta4 = selale
-            }
-        }) {
             Image(
-                painter = painterResource(R.drawable.bigstock_zodiac_circle_round_horoscope_334084123_1_621x621),
+                painter = painterResource(R.drawable.f_elconfidencial_com_original_d91_12f_bdb_d9112fbdb40bca66c3f3ebf4e7e8644c),
                 contentDescription = "Imagen del horoscopo",
                 modifier = Modifier
-                    .size(40.dp)
+                    .size(65.dp)
                     .clip(CircleShape)
+                    .clickable {  if (selale == respuesta1){
+                        val nuevo = seleccion.random()
+                        respuesta1 = nuevo
+                    }else{
+                        respuesta1 = selale
+                    }
+                        if (selale == respuesta2){
+                            val nuevo = seleccion.random()
+                            respuesta2 = nuevo
+                        }else{
+                            respuesta2 = selale
+                        }
+                        if (selale == respuesta3){
+                            val nuevo = seleccion.random()
+                            respuesta3 = nuevo
+                        }else{
+                            respuesta3 = selale
+                        }
+                        if (selale == respuesta4){
+                            val nuevo = seleccion.random()
+                            respuesta4 = nuevo
+                        }else{
+                            respuesta4 = selale
+                        } }
             )
         }
-        Spacer(modifier = Modifier.width(8.dp))
-        Column() {
-            Spacer(modifier = Modifier.height(4.dp))
+        Spacer(modifier = Modifier.width(8.dp),)
+        Column(modifier = Modifier
+                .fillMaxHeight()
+                .width(400.dp)
+                .wrapContentWidth(Alignment.CenterHorizontally),
+            horizontalAlignment = Alignment.CenterHorizontally) {
             Text(text = "$name")
+            Spacer(modifier = Modifier.height(4.dp))
             Text(text = "Amor: $respuesta1")
             Text(text = "Dinero: $respuesta2")
             Text(text = "Salud: $respuesta3")
@@ -112,8 +116,6 @@ fun Greeting(name: String) {
             Text(text = "El dia de hoy es: $dia")
         }
     }
-
-}
 
 @Preview(showBackground = true)
 @Preview(
